@@ -4,6 +4,10 @@
 Official code for "Neural Gaffer: Relighting Any Object via Diffusion" (under review)
 
 
+https://github.com/Haian-Jin/Neural_Gaffer/assets/79512936/bc35ad6f-134e-4b83-8b4a-4daaae85a674
+
+
+
 ## Acknowledgement
 
 * This work was done while Haian Jin was a full-time student at Cornell.
