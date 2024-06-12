@@ -15,3 +15,18 @@ https://github.com/Haian-Jin/Neural_Gaffer/assets/79512936/bc35ad6f-134e-4b83-8b
 
 * The selection of data and the generation of all figures and results was led by Cornell University.
 
+
+## Citation
+
+If you find our code helpful, please cite our paper:
+
+```
+@misc{jin2024neural_gaffer,
+      title={Neural Gaffer: Relighting Any Object via Diffusion}, 
+      author={Haian Jin and Yuan Li and Fujun Luan and Yuanbo Xiangli and Sai Bi and Kai Zhang and Zexiang Xu and Jin Sun and Noah Snavely},
+      year={2024},
+      eprint={2406.07520},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV}
+}
+```
