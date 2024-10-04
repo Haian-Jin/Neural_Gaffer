@@ -7,6 +7,8 @@ Moreover, by combining with other generative methods, our model enables many dow
 https://github.com/Haian-Jin/Neural_Gaffer/assets/79512936/bc35ad6f-134e-4b83-8b4a-4daaae85a674
 
 
+## Code release
+I will work on organizing the code recently and release the code this month (Oct., 2024).
 
 ## Acknowledgement
 
