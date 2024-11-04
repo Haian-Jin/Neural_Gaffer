@@ -33,7 +33,7 @@ coming soon
 ## 3. Inference commands 
 ### 3.1 Relighting in-the-wild single image input
 #### 3.1.1 Image preprocessing: segment, rescale, and recenter
-Put the input images under `--img_dir` folder and run the following command to segment the foreground. The preprocessed data will be saved in `--out_dir`.
+Put the input images under the `--img_dir` folder and run the following command to segment the foreground. The preprocessed data will be saved in `--out_dir`.
 
 Here, we borrow code from One-2-3-45.
 ```bash
@@ -45,13 +45,13 @@ cd ../..
 
 #################################################################
 
-# segment the foreground
+# Segment the foreground
 python scripts/segment_foreground.py --img_dir ./demo --sam_ckpt ./models/checkpoints/sam_vit_h_4b8939.pth --out_dir ./preprocessed_data  --gpu_idx 0
 
-# the preprocessed data will be saved in ./'preprocessed_data'
+# The preprocessed data will be saved in ./'preprocessed_data'
 ```
 #### 3.1.2 Preprocessing the target environment maps
-Place the target environment maps in the `--lighting_dir` folder, then run the following command to preprocess them. The preprocessed data will be saved in the `--output_dir `folder. Use `--frame_num` to specify the number of frames for rotating the environment maps 360 degree along the azimuthal direction. 
+Place the target environment maps in the `--lighting_dir` folder, then run the following command to preprocess them. The preprocessed data will be saved in the `--output_dir `folder. Use `--frame_num` to specify the number of frames for rotating the environment maps 360 degrees along the azimuthal direction. 
 ```bash
 python scripts/generate_bg_and_rotate_envir_map.py --lighting_dir 'demo/environment_map_sample' --output_dir './preprocessed_lighting_data' --frame_num 120
 ```
@@ -71,7 +71,7 @@ python scripts/composting_background.py --mask_dir ./preprocessed_data/mask --li
 ### 3.2 Relighting the Ojaverse instances
 Coming soon.
 
-## 4. Acknowledgement
+## 4. Acknowledgment
 
 * This work was done while Haian Jin was a full-time student at Cornell.
 
