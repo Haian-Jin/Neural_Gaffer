@@ -1,0 +1,6 @@
+.mp4
+logs/
+models
+__pycache__/
+*.py[cod]
+*$py.class
