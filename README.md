@@ -1,10 +1,20 @@
-# Neural Gaffer: Relighting Any Object via Diffusion (code coming soon)
+# Neural Gaffer: Relighting Any Object via Diffusion (NeurIPS 2024)
 
 ## [Project Page](https://neural-gaffer.github.io/) |  [Paper](https://arxiv.org/abs/2406.07520)
 Neural Gaffer is an end-to-end 2D relighting diffusion model that accurately **relights any object in a single image under various lighting conditions**.
 Moreover, by combining with other generative methods, our model enables many downstream 2D tasks, such as text-based relighting and object insertion. Our model can also operate as a strong relighting prior for 3D tasks, such as relighting a radiance field.
 
 https://github.com/Haian-Jin/Neural_Gaffer/assets/79512936/bc35ad6f-134e-4b83-8b4a-4daaae85a674
+
+## 0. TODO List
+I’ll be updating the following list this week. If you have any urgent requirements, such as needing to compare this method for an upcoming submission, please contact me via my email.
+- [x] Release the checkpoint and the inference script for in-the-wild single image input
+- [ ] Release the inference script for Ojaverse-like instances
+- [ ] Release the training dataset
+- [ ] Release the 3D relighting code
+
+
+
 
 ## 1. Preparation 
 ### 1.1 Installation
