@@ -45,8 +45,10 @@ coming soon
 ### 3.1 Relighting in-the-wild single image input
 #### 3.1.1 Image preprocessing: segment, rescale, and recenter
 Put the input images under the `--img_dir` folder and run the following command to segment the foreground. The preprocessed data will be saved in `--out_dir`.
-
 Here, we borrow code from One-2-3-45.
+
+*Note: If you input images have masks and you don't want to do rescale and recenter, you can skip this step by manually saving the three-channel foreground and mask of each input image in the `{$out_dir}/img` and `{$out_dir}/mask` folders, respectively.*
+
 ```bash
 # download the pre-trained SAM to segment the foreground
 # only need to run once
@@ -89,7 +91,7 @@ Coming soon.
 
 * The selection of data and the generation of all figures and results was led by Cornell University.
 
-
+* The codebase is built on top of the [Zero123-HF](https://github.com/kxhit/zero123-hf), a diffuser implementation of Zero123.
 ## 5. Citation
 
 If you find our code helpful, please cite our paper:
