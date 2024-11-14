@@ -49,7 +49,7 @@ coming soon
 Put the input images under the `--img_dir` folder and run the following command to segment the foreground. The preprocessed data will be saved in `--out_dir`.
 Here, we borrow code from One-2-3-45.
 
-*Note: If you input images have masks and you don't want to do rescale and recenter, you can skip this step by manually saving the three-channel foreground and mask of each input image in the `{$out_dir}/img` and `{$out_dir}/mask` folders, respectively.*
+*Note: If your input images have masks and you don't want to do rescale and recenter, you can skip this step by manually saving the three-channel foreground and mask of each input image in the `{$out_dir}/img` and `{$out_dir}/mask` folders, respectively.*
 
 ```bash
 # download the pre-trained SAM to segment the foreground
@@ -97,7 +97,7 @@ Given a radiance field of a 3D object as input, our diffusion model serves as a 
 #### Note
 * Our 3D relighting pipeline assumes the 3D radiance field as input, making the order of **4.1** and **4.2** interchangeable. Additionally, the input camera poses used in **4.1** can be replaced with arbitrary predefined camera poses. However, changing their order may require code modifications to ensure compatibility with the dataloader format.
 
-* We have 6 objects rendered under 4 unseen lighting conditions as the testing dataset. The data are stored in the similar format as many Objaverse rendering data (such as Zero123).For each object, 100 camera poses are sampled to generate
+* We have 6 objects rendered under 4 unseen lighting conditions as the testing dataset. The data are stored in a similar format as many Objaverse rendering data (such as Zero123).For each object, 100 camera poses are sampled to generate
 training images and 20 camera poses are sampled for testing images. We use the images rendered under the first lighting condition for training and the images rendered under the other three lighting conditions for relighting evaluation. Here are the commands to download the data:
 ```bash
 wget https://huggingface.co/coast01/Neural_Gaffer/resolve/main/3d_relighting_data.zip
@@ -107,7 +107,7 @@ rm 3d_relighting_data.zip
 
 ### 4.1 Prepare the data used in stage 1
 
-The following command relights the input images stored in the `--validation_data_dir` folder using HDR environment maps from the `--lighting_dir`. The relighted images will be saved in the `--save_dir` folder. The checkpoint file for the diffusion model is located in the `--output_dir` folder. `--cond_lighting_index` specifies the index of the lighting used as the lighitng of the input images.
+The following command relights the input images stored in the `--validation_data_dir` folder using HDR environment maps from the `--lighting_dir`. The relighted images will be saved in the `--save_dir` folder. The checkpoint file for the diffusion model is located in the `--output_dir` folder. `--cond_lighting_index` specifies the index of the lighting used as the lighting of the input images.
 In total, this command will generate 2,888 relighted images ($6 \text{ objects} \times 4 \text{ different lighting conditions} \times 120 \text{ rotations per lighting}$). Using a single A6000 GPU, this process takes approximately 24 minutes.
 ```bash
 accelerate launch --main_process_port 25539 --config_file configs/1_16fp.yaml neural_gaffer_inference_objaverse_3d.py --output_dir logs/neural_gaffer_res256 --mixed_precision fp16 --resume_from_checkpoint latest --total_view 120 --lighting_per_view 4 --cond_lighting_index 0 --validation_data_dir './3d_relighting_data' --lighting_dir './demo/hdrmaps_for_3d' --save_dir './prepocessed_3d_relighting_data'
@@ -125,7 +125,7 @@ to_train=helmet && python train.py --config configs/gaffer3d_tensorf.txt --based
 ```
 
 ### 4.3 Relighting the radiance field without the inverse rendering and with diffusion data prior (Stage 1 & 2)
-Assuming we have 4 unseen lighting conditions, the input radiance field was rendered under lighting 0, as by default. Then the `relight_idx` can be set to be 1, 2, and 3, which correspond to the other three unseen lighting conditions. The following command relights the radiance field using the diffusion model as a prior. The relighted radiance field will be saved in the `--save_dir` folder. The checkpoint file for the input radiance field is located in the `--ckpt` folder.
+Assuming we have 4 unseen lighting conditions, the input radiance field was rendered under lighting 0, by default. Then the `relight_idx` can be set to 1, 2, and 3, which correspond to the other three unseen lighting conditions. The following command relights the radiance field using the diffusion model as a prior. The relighted radiance field will be saved in the `--save_dir` folder. The checkpoint file for the input radiance field is located in the `--ckpt` folder.
 ```bash
 to_train=helmet && relight_idx=1  && python train_relighitng_3d.py --config configs/gaffer3d_relighting.txt --ckpt ./3d_logs/tensorf/log_${to_train}/tensorf_VM/tensorf_VM.th  --basedir ./3d_logs/neural_gaffer_3d_relighting/log_${to_train} --datadir ../prepocessed_3d_relighting_data/val_unseen_relighting_only/${to_train} --to_relight_idx ${relight_idx}
 ```
@@ -134,10 +134,10 @@ Given the high resource demands of data preprocessing (specifically, rotating th
 map) and model training, and considering our limited university resources, we trained the model at a
 lower image resolution of 256 × 256. 
 
-Low resolution has been our key limitation. We used VAE in our base diffusion model to encode input images into latent maps, and then directly decode them. We found that VAE struggles
+The low resolution has been our key limitation. We used VAE in our base diffusion model to encode input images into latent maps, and then directly decode them. We found that VAE struggles
 to preserve identity for objects with fine details even from latent maps encoded from the input images at this resolution(256 × 256), which in turn results in many relighting failure cases at this resolution. Finetuning our model at a higher resolution will greatly help solve this issue. Changing the base diffusion model to a more powerful one, such as stable diffusion 3 or Flux, will also help.
 
-If you found the relighting results failed to preserve the identity of the object, you can test if this issue is caused by VAE by using the following command to encode then decode the input images. If the decoded images have obvious artifacts, it indicates that the pretrained VAE we used is the main cause of the failure. 
+If you find the relighting results failed to preserve the identity of the object, you can test if this issue is caused by VAE by using the following command to encode and then decode the input images. If the decoded images have obvious artifacts, it indicates that the pre-trained VAE we used is the main cause of the failure. 
 ```bash
 # --input_image_path specifies the path of the input image you want to test
 python scripts/diffusion_test.py --input_image_path "./demo/vae_test/lego.png"  
