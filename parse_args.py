@@ -20,6 +20,12 @@ def parse_args(input_args=None):
         default=-1,
     )
     parser.add_argument(
+        "--cond_lighting_index",
+        type=int,
+        default=0,
+    )
+    
+    parser.add_argument(
         "--revision",
         type=str,
         default=None,
@@ -49,7 +55,7 @@ def parse_args(input_args=None):
     parser.add_argument(
         "--save_dir",
         type=str,
-        default="./temp_val_result/synthetic_rotating_without_cc/seen_nerf_synthetic_debug",
+        default="./",
         help="The output directory where the model predictions and checkpoints will be written.",
     )
     parser.add_argument("--seed", type=int, default=42, help="A seed for reproducible training.")

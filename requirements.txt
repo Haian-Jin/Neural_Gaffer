@@ -1,8 +1,7 @@
 --extra-index-url https://download.pytorch.org/whl/cu118
-torch==2.5.1
+torch==2.4.1
 torchvision
 albumentations==0.4.3
-opencv-python==4.5.5.64
 pudb==2019.2
 imageio==2.9.0
 Pillow==10.0.1
@@ -19,13 +18,14 @@ torchmetrics>= 0.11.0
 fire==0.4.0
 gradio==3.21.0
 diffusers==0.18.2
-datasets[vision]>= 2.4.0
+huggingface-hub==0.16.4 
+accelerate==0.25.0
+datasets==2.14.5
 carvekit-colab==4.1.0
 rich>=13.3.2
 lovely-numpy>=0.2.8
 lovely-tensors>=0.1.14
 plotly==5.13.1
-accelerate
 pytorch-lightning>=1.6.0
 wandb
 segment_anything==1.0
@@ -33,3 +33,7 @@ rembg
 opencv-python
 ipdb
 tqdm
+kiui
+configargparse
+plyfile==1.1
+lpips==0.1.4
