@@ -94,10 +94,10 @@ Given a radiance field of a 3D object as input, our diffusion model serves as a 
 - **Section 4.2**: Optimizing the radiance field using multiview inputs (we use TensoRF for this purpose).
 - **Section 4.3**: Relighting the radiance field directly, leveraging the diffusion model as a data-driven prior. This process bypasses inverse rendering and incorporates both Stage 1 and Stage 2.
 
-#### Note
+#### Note:
 * Our 3D relighting pipeline assumes the 3D radiance field as input, making the order of **4.1** and **4.2** interchangeable. Additionally, the input camera poses used in **4.1** can be replaced with arbitrary predefined camera poses. However, changing their order may require code modifications to ensure compatibility with the dataloader format.
 
-* We have 6 objects rendered under 4 unseen lighting conditions as the testing dataset. The data are stored in a similar format as many Objaverse rendering data (such as Zero123).For each object, 100 camera poses are sampled to generate
+* We have 6 objects rendered under 4 unseen lighting conditions as the testing dataset. The data are stored in a similar format as many Objaverse rendering data (such as Zero123). For each object, 100 camera poses are sampled to generate
 training images and 20 camera poses are sampled for testing images. We use the images rendered under the first lighting condition for training and the images rendered under the other three lighting conditions for relighting evaluation. Here are the commands to download the data:
 ```bash
 wget https://huggingface.co/coast01/Neural_Gaffer/resolve/main/3d_relighting_data.zip
