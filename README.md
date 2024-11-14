@@ -130,6 +130,8 @@ Assuming we have 4 unseen lighting conditions, the input radiance field was rend
 to_train=helmet && relight_idx=1  && python train_relighitng_3d.py --config configs/gaffer3d_relighting.txt --ckpt ./3d_logs/tensorf/log_${to_train}/tensorf_VM/tensorf_VM.th  --basedir ./3d_logs/neural_gaffer_3d_relighting/log_${to_train} --datadir ../prepocessed_3d_relighting_data/val_unseen_relighting_only/${to_train} --to_relight_idx ${relight_idx}
 ```
 ## 5. Limitations
+<img width="500" alt="image" src="https://github.com/user-attachments/assets/140c31d9-6b3e-4b9f-a872-6624d49cae99">
+
 Given the high resource demands of data preprocessing (specifically, rotating the HDR environment
 map) and model training, and considering our limited university resources, we trained the model at a
 lower image resolution of 256 × 256. 
