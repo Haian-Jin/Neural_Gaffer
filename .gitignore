@@ -1,6 +1,6 @@
 .mp4
 logs/
-models
+models/checkpoints
 neural_gaffer_3d_relighting/3d_logs
 3d_relighting_data
 prepocessed_3d_relighting_data
