@@ -1,0 +1,36 @@
+02/04/2025 14:58:02 - INFO - __main__ - ***** Running training *****
+02/04/2025 14:58:02 - INFO - __main__ -   Num examples = 1000
+02/04/2025 14:58:02 - INFO - __main__ -   Num batches each epoch = 8
+02/04/2025 14:58:02 - INFO - __main__ -   Num Epochs = 10000
+02/04/2025 14:58:02 - INFO - __main__ -   Instantaneous batch size per device = 64
+02/04/2025 14:58:02 - INFO - __main__ -   Total train batch size (w. parallel, distributed & accumulation) = 128
+02/04/2025 14:58:02 - INFO - __main__ -   Gradient Accumulation steps = 1
+02/04/2025 14:58:02 - INFO - __main__ -   Total optimization steps = 80000
+02/04/2025 14:58:02 - INFO - __main__ -  do_classifier_free_guidance = True
+02/04/2025 14:58:02 - INFO - __main__ -  conditioning_dropout_prob = 0.05
+Steps:   0%|  | 100/80000 [09:15<120:33:35,  5.43s/it, epoch=12, loss=0.0153, loss_epoch=0.0178, lr=9.9e-5]02/04/2025 15:07:20 - INFO - __main__ - Running unseen_object_with_random_area_light_condition validation...
+cc_projection/diffusion_pytorch_model.safetensors not found
+The config attributes {'cc_projection': ['pipeline_zero1to3', 'CCProjection']} were passed to Neural_Gaffer_StableDiffusionPipeline, but are not expected and will be ignored. Please verify your model_index.json configuration file.
+Keyword arguments {'cc_projection': ['pipeline_zero1to3', 'CCProjection']} are not expected by Neural_Gaffer_StableDiffusionPipeline and will be ignored.
+30it [02:08,  4.28s/it]
+02/04/2025 15:09:47 - INFO - __main__ - Running unseen_object_with_unseen_envir validation...
+cc_projection/diffusion_pytorch_model.safetensors not found
+The config attributes {'cc_projection': ['pipeline_zero1to3', 'CCProjection']} were passed to Neural_Gaffer_StableDiffusionPipeline, but are not expected and will be ignored. Please verify your model_index.json configuration file.
+Keyword arguments {'cc_projection': ['pipeline_zero1to3', 'CCProjection']} are not expected by Neural_Gaffer_StableDiffusionPipeline and will be ignored.
+30it [02:07,  4.26s/it]
+02/04/2025 15:12:12 - INFO - __main__ - Running unseen_object_with_seen_envir validation...
+cc_projection/diffusion_pytorch_model.safetensors not found
+The config attributes {'cc_projection': ['pipeline_zero1to3', 'CCProjection']} were passed to Neural_Gaffer_StableDiffusionPipeline, but are not expected and will be ignored. Please verify your model_index.json configuration file.
+Keyword arguments {'cc_projection': ['pipeline_zero1to3', 'CCProjection']} are not expected by Neural_Gaffer_StableDiffusionPipeline and will be ignored.
+30it [02:07,  4.26s/it]
+02/04/2025 15:14:38 - INFO - __main__ - Running training_object_with_unseen_envir validation...
+cc_projection/diffusion_pytorch_model.safetensors not found
+The config attributes {'cc_projection': ['pipeline_zero1to3', 'CCProjection']} were passed to Neural_Gaffer_StableDiffusionPipeline, but are not expected and will be ignored. Please verify your model_index.json configuration file.
+Keyword arguments {'cc_projection': ['pipeline_zero1to3', 'CCProjection']} are not expected by Neural_Gaffer_StableDiffusionPipeline and will be ignored.
+30it [02:07,  4.25s/it]
+02/04/2025 15:17:03 - INFO - __main__ - Running train validation...
+cc_projection/diffusion_pytorch_model.safetensors not found
+The config attributes {'cc_projection': ['pipeline_zero1to3', 'CCProjection']} were passed to Neural_Gaffer_StableDiffusionPipeline, but are not expected and will be ignored. Please verify your model_index.json configuration file.
+Keyword arguments {'cc_projection': ['pipeline_zero1to3', 'CCProjection']} are not expected by Neural_Gaffer_StableDiffusionPipeline and will be ignored.
+30it [02:10,  4.35s/it]
+Steps:   0%|  | 345/80000 [44:06<156:10:48,  7.06s/it, epoch=43, loss=0.0177, loss_epoch=0.0177, lr=0.0001]

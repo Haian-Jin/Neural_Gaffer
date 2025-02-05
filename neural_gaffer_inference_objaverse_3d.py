@@ -240,8 +240,8 @@ def main(args):
     )
 
     validation_dataset = RelightingObjaverseData(
-        lighting_dir = args.lighting_dir, 
-        img_dir = args.validation_data_dir,
+        lighting_dir = args.val_lighting_dir, 
+        img_dir = args.val_img_dir,
         lighting_per_view=args.lighting_per_view,
         total_view=120,
         json_file=None,

@@ -9,9 +9,8 @@ https://github.com/Haian-Jin/Neural_Gaffer/assets/79512936/bc35ad6f-134e-4b83-8b
 ## 0. TODO List
 I'll be updating the following list. If you have any urgent requirements, such as needing to compare this method for an upcoming submission, please contact me via my email.
 - [x] Release the checkpoint and the inference script for in-the-wild single image input
-- [ ] Release the inference script for Ojaverse-like instances
 - [ ] Release the training dataset for the diffusion model
-- [ ] Release the training code for the diffusion model
+- [x] Release the training code for the diffusion model
 - [x] Release the 3D relighting code
 
 
@@ -37,11 +36,20 @@ cd ..
 ```
 
 
-### 1.3 Downloading the training dataset
-coming soon
+### 1.3 Downloading the training and validation dataset
+Here we provide a **subset** of our training dataset and full set of the validation dataset. (But we didn't use all of the validation dataset when training the model and computing the metrics because it's a little too big). 
+* [Training Dataset Subset - Images](https://huggingface.co/datasets/coast01/NeuralGafferDataset/resolve/main/training_data_SUBSET_img.zip?download=true)
+* [Training Dataset Subset - Lighting](https://huggingface.co/datasets/coast01/NeuralGafferDataset/resolve/main/training_data_SUBSET_lighting.zip?download=true)
+* [Validation Dataset - Images](https://huggingface.co/datasets/coast01/NeuralGafferDataset/resolve/main/val_rendered_images_resized.zip?download=true)
+* [Validation Dataset - Lighting](https://huggingface.co/datasets/coast01/NeuralGafferDataset/resolve/main/training_data_SUBSET_lighting.zip?download=true)
 
+The training dataset subset here only has 1000 objects, which is a subset of the full training dataset used to train our model (~ 90,000 objects). We provide the subset here to help you test if the code can be run correctly. The full training dataset object list and our validatoin dataset list in the `./filtered_object_list` folder.
 ## 2. Training
-coming soon
+Before running, please change the dataset directories (training and validation) in `configs/neural_gaffer_training.txt`. The following command trains the diffusion model for 2D relighting with 8 GPUs.
+
+```bash
+export NCCL_P2P_DISABLE=1 && export NCCL_IB_DISABLE=1 &&  accelerate launch --main_process_port 25525 --config_file configs/8_16fp.yaml  neural_gaffer_training.py  --dataloader_num_workers 32  --use_ema --gradient_checkpointing   --config configs/neural_gaffer_training.txt
+```
 
 ## 3. Inference commands for 2D relighting 
 ### 3.1 Relighting in-the-wild single image input
@@ -71,11 +79,11 @@ Place the target environment maps in the `--lighting_dir` folder, then run the f
 python scripts/generate_bg_and_rotate_envir_map.py --lighting_dir 'demo/environment_map_sample' --output_dir './preprocessed_lighting_data' --frame_num 120
 ```
 #### 3.1.3 Relighting
-The following command relights the input images stored in the `--validation_data_dir` folder using preprocessed target lighting data from the `--lighting_dir`. The relighted images will be saved in the `--save_dir` folder. The checkpoint file for the diffusion model is located in the `--output_dir` folder.
+The following command relights the input images stored in the `--val_img_dir` folder using preprocessed target lighting data from the `--val_lighting_dir`. The relighted images will be saved in the `--save_dir` folder. The checkpoint file for the diffusion model is located in the `--output_dir` folder.
 
 In total, this command will generate 2,400 relighted images ($5 \text{ input images} \times 4 \text{ different lighting conditions} \times 120 \text{ rotations per lighting}$). Using a single A6000 GPU, this process takes approximately 20 minutes.
 ```bash
-accelerate launch --main_process_port 25539 --config_file configs/1_16fp.yaml neural_gaffer_inference_real_data.py --output_dir logs/neural_gaffer_res256 --mixed_precision fp16 --resume_from_checkpoint latest --total_view 120 --lighting_per_view 4 --validation_data_dir './preprocessed_data/img' --lighting_dir "./preprocessed_lighting_data" --save_dir ./real_data_relighting 
+accelerate launch --main_process_port 25539 --config_file configs/1_16fp.yaml neural_gaffer_inference_real_data.py --output_dir logs/neural_gaffer_res256 --mixed_precision fp16 --resume_from_checkpoint latest --total_view 120 --lighting_per_view 4 --val_img_dir './preprocessed_data/img' --val_lighting_dir "./preprocessed_lighting_data" --save_dir ./real_data_relighting 
 ```
 
 #### 3.1.4 Compositing the background (optional)
@@ -107,10 +115,10 @@ rm 3d_relighting_data.zip
 
 ### 4.1 Prepare the data used in stage 1
 
-The following command relights the input images stored in the `--validation_data_dir` folder using HDR environment maps from the `--lighting_dir`. The relighted images will be saved in the `--save_dir` folder. The checkpoint file for the diffusion model is located in the `--output_dir` folder. `--cond_lighting_index` specifies the index of the lighting used as the lighting of the input images.
+The following command relights the input images stored in the `--val_img_dir` folder using HDR environment maps from the `--val_lighting_dir`. The relighted images will be saved in the `--save_dir` folder. The checkpoint file for the diffusion model is located in the `--output_dir` folder. `--cond_lighting_index` specifies the index of the lighting used as the lighting of the input images.
 In total, this command will generate 2,888 relighted images ($6 \text{ objects} \times 4 \text{ different lighting conditions} \times 120 \text{ rotations per lighting}$). Using a single A6000 GPU, this process takes approximately 24 minutes.
 ```bash
-accelerate launch --main_process_port 25539 --config_file configs/1_16fp.yaml neural_gaffer_inference_objaverse_3d.py --output_dir logs/neural_gaffer_res256 --mixed_precision fp16 --resume_from_checkpoint latest --total_view 120 --lighting_per_view 4 --cond_lighting_index 0 --validation_data_dir './3d_relighting_data' --lighting_dir './demo/hdrmaps_for_3d' --save_dir './prepocessed_3d_relighting_data'
+accelerate launch --main_process_port 25539 --config_file configs/1_16fp.yaml neural_gaffer_inference_objaverse_3d.py --output_dir logs/neural_gaffer_res256 --mixed_precision fp16 --resume_from_checkpoint latest --total_view 120 --lighting_per_view 4 --cond_lighting_index 0 --val_img_dir './3d_relighting_data' --val_lighting_dir './demo/hdrmaps_for_3d' --save_dir './prepocessed_3d_relighting_data'
 ```
 
 ### 4.2 Optimize a radiance field

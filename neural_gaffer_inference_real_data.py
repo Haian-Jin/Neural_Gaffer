@@ -201,8 +201,8 @@ def main(args):
     total_view = args.total_view
     img_per_object = lighting_per_view * total_view
     validation_dataset = Relighting_Data(
-        lighting_dir = args.lighting_dir,
-        img_dir = args.validation_data_dir,   
+        lighting_dir = args.val_lighting_dir,
+        img_dir = args.val_img_dir,   
         lighting_per_view=lighting_per_view,
         total_view=total_view,
         image_transforms=image_transforms,

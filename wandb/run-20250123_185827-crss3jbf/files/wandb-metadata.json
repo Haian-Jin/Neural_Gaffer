@@ -1,0 +1,72 @@
+{
+  "os": "Linux-5.4.0-198-generic-x86_64-with-glibc2.31",
+  "python": "3.9.20",
+  "startedAt": "2025-01-23T23:58:27.173431Z",
+  "args": [
+    "--pretrained_model_name_or_path",
+    "kxic/zero123-xl",
+    "--train_batch_size",
+    "64",
+    "--dataloader_num_workers",
+    "4",
+    "--output_dir",
+    "logs/03_09_finetune_zero123xl_with_preprocessed_data",
+    "--use_ema",
+    "--gradient_checkpointing",
+    "--mixed_precision",
+    "fp16",
+    "--gradient_accumulation_steps",
+    "1",
+    "--resume_from_checkpoint",
+    "latest",
+    "--config",
+    "configs/neural_gaffer_training.txt"
+  ],
+  "program": "/share/phoenix/nfs02/S6/localdisk/hj453/code/Neural_Gaffer/neural_gaffer_training.py",
+  "codePath": "neural_gaffer_training.py",
+  "git": {
+    "remote": "git@github.com:Haian-Jin/Neural_Gaffer.git",
+    "commit": "c0876450454fa6acb67b97c6984b7d2cfb3719bb"
+  },
+  "email": "hj453@cornell.edu",
+  "root": "/share/phoenix/nfs02/S6/localdisk/hj453/code/Neural_Gaffer",
+  "host": "snavely-compute-03.tech.cornell.edu",
+  "username": "hj453",
+  "executable": "/share/phoenix/nfs02/S6/localdisk/hj453/.conda/envs/neural-gaffer/bin/python",
+  "codePathLocal": "neural_gaffer_training.py",
+  "cpu_count": 32,
+  "cpu_count_logical": 32,
+  "gpu": "NVIDIA RTX A6000",
+  "gpu_count": 2,
+  "disk": {
+    "/": {
+      "total": "85857402880",
+      "used": "51918934016"
+    }
+  },
+  "memory": {
+    "total": "1081899745280"
+  },
+  "cpu": {
+    "count": 32,
+    "countLogical": 32
+  },
+  "gpu_nvidia": [
+    {
+      "name": "NVIDIA RTX A6000",
+      "memoryTotal": "51527024640",
+      "cudaCores": 10752,
+      "architecture": "Ampere"
+    },
+    {
+      "name": "NVIDIA RTX A6000",
+      "memoryTotal": "51527024640",
+      "cudaCores": 10752,
+      "architecture": "Ampere"
+    }
+  ],
+  "slurm": {
+    "job_id": "6473984"
+  },
+  "cudaVersion": "12.2"
+}

@@ -1,0 +1,141 @@
+01/23/2025 17:33:28 - INFO - __main__ - ***** Running training *****
+01/23/2025 17:33:28 - INFO - __main__ -   Num examples = 90092
+01/23/2025 17:33:28 - INFO - __main__ -   Num batches each epoch = 704
+01/23/2025 17:33:28 - INFO - __main__ -   Num Epochs = 114
+01/23/2025 17:33:28 - INFO - __main__ -   Instantaneous batch size per device = 64
+01/23/2025 17:33:28 - INFO - __main__ -   Total train batch size (w. parallel, distributed & accumulation) = 128
+01/23/2025 17:33:28 - INFO - __main__ -   Gradient Accumulation steps = 1
+01/23/2025 17:33:28 - INFO - __main__ -   Total optimization steps = 80000
+01/23/2025 17:33:28 - INFO - __main__ -  do_classifier_free_guidance = True
+01/23/2025 17:33:28 - INFO - __main__ -  conditioning_dropout_prob = 0.05
+Checkpoint 'latest' does not exist. Starting a new training run.
+Steps:   0%|                                                                                                                                                                      | 0/80000 [00:00<?, ?it/s]/share/phoenix/nfs02/S6/localdisk/hj453/.conda/envs/neural-gaffer/lib/python3.9/site-packages/torch/utils/checkpoint.py:1399: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  with device_autocast_ctx, torch.cpu.amp.autocast(**cpu_autocast_kwargs), recompute_context:  # type: ignore[attr-defined]
+Steps:   0%|                                                                                                                                                          | 1/80000 [00:09<219:22:24,  9.87s/it]01/23/2025 17:33:40 - INFO - __main__ - Running unseen_object_with_random_light_condition validation...
+cc_projection/diffusion_pytorch_model.safetensors not found
+The config attributes {'cc_projection': ['pipeline_zero1to3', 'CCProjection']} were passed to Neural_Gaffer_StableDiffusionPipeline, but are not expected and will be ignored. Please verify your model_index.json configuration file.
+Keyword arguments {'cc_projection': ['pipeline_zero1to3', 'CCProjection']} are not expected by Neural_Gaffer_StableDiffusionPipeline and will be ignored.
+30it [02:06,  4.21s/it]
+/share/phoenix/nfs02/S6/localdisk/hj453/.conda/envs/neural-gaffer/lib/python3.9/site-packages/torchmetrics/functional/image/lpips.py:323: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  self.load_state_dict(torch.load(model_path, map_location="cpu"), strict=False)
+01/23/2025 17:36:04 - INFO - __main__ - Running unseen_object_with_unseen_envir validation...
+cc_projection/diffusion_pytorch_model.safetensors not found
+The config attributes {'cc_projection': ['pipeline_zero1to3', 'CCProjection']} were passed to Neural_Gaffer_StableDiffusionPipeline, but are not expected and will be ignored. Please verify your model_index.json configuration file.
+Keyword arguments {'cc_projection': ['pipeline_zero1to3', 'CCProjection']} are not expected by Neural_Gaffer_StableDiffusionPipeline and will be ignored.
+1it [00:04,  4.99s/it]
+Traceback (most recent call last):
+  File "/share/phoenix/nfs02/S6/localdisk/hj453/code/Neural_Gaffer/neural_gaffer_training.py", line 1268, in <module>
+    args = parse_args()
+  File "/share/phoenix/nfs02/S6/localdisk/hj453/code/Neural_Gaffer/neural_gaffer_training.py", line 1133, in main
+    ema_unet.copy_to(unet.parameters())
+  File "/share/phoenix/nfs02/S6/localdisk/hj453/code/Neural_Gaffer/neural_gaffer_training.py", line 115, in log_validation
+    pipeline_output_images = pipeline(input_imgs=input_image, prompt_imgs=input_image, poses=pose,
+  File "/share/phoenix/nfs02/S6/localdisk/hj453/.conda/envs/neural-gaffer/lib/python3.9/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+  File "/share/phoenix/nfs02/S6/localdisk/hj453/code/Neural_Gaffer/pipeline_neural_gaffer.py", line 848, in __call__
+    noise_pred = self.unet(latent_model_input, t, encoder_hidden_states=prompt_embeds).sample
+  File "/share/phoenix/nfs02/S6/localdisk/hj453/.conda/envs/neural-gaffer/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/share/phoenix/nfs02/S6/localdisk/hj453/.conda/envs/neural-gaffer/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/share/phoenix/nfs02/S6/localdisk/hj453/.conda/envs/neural-gaffer/lib/python3.9/site-packages/accelerate/utils/operations.py", line 680, in forward
+    return model_forward(*args, **kwargs)
+  File "/share/phoenix/nfs02/S6/localdisk/hj453/.conda/envs/neural-gaffer/lib/python3.9/site-packages/accelerate/utils/operations.py", line 668, in __call__
+    return convert_to_fp32(self.model_forward(*args, **kwargs))
+  File "/share/phoenix/nfs02/S6/localdisk/hj453/.conda/envs/neural-gaffer/lib/python3.9/site-packages/torch/amp/autocast_mode.py", line 43, in decorate_autocast
+    return func(*args, **kwargs)
+  File "/share/phoenix/nfs02/S6/localdisk/hj453/.conda/envs/neural-gaffer/lib/python3.9/site-packages/diffusers/models/unet_2d_condition.py", line 905, in forward
+    sample, res_samples = downsample_block(
+  File "/share/phoenix/nfs02/S6/localdisk/hj453/.conda/envs/neural-gaffer/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/share/phoenix/nfs02/S6/localdisk/hj453/.conda/envs/neural-gaffer/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/share/phoenix/nfs02/S6/localdisk/hj453/.conda/envs/neural-gaffer/lib/python3.9/site-packages/diffusers/models/unet_2d_blocks.py", line 993, in forward
+    hidden_states = attn(
+  File "/share/phoenix/nfs02/S6/localdisk/hj453/.conda/envs/neural-gaffer/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/share/phoenix/nfs02/S6/localdisk/hj453/.conda/envs/neural-gaffer/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/share/phoenix/nfs02/S6/localdisk/hj453/.conda/envs/neural-gaffer/lib/python3.9/site-packages/diffusers/models/transformer_2d.py", line 291, in forward
+    hidden_states = block(
+  File "/share/phoenix/nfs02/S6/localdisk/hj453/.conda/envs/neural-gaffer/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/share/phoenix/nfs02/S6/localdisk/hj453/.conda/envs/neural-gaffer/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/share/phoenix/nfs02/S6/localdisk/hj453/.conda/envs/neural-gaffer/lib/python3.9/site-packages/diffusers/models/attention.py", line 154, in forward
+    attn_output = self.attn1(
+  File "/share/phoenix/nfs02/S6/localdisk/hj453/.conda/envs/neural-gaffer/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/share/phoenix/nfs02/S6/localdisk/hj453/.conda/envs/neural-gaffer/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/share/phoenix/nfs02/S6/localdisk/hj453/.conda/envs/neural-gaffer/lib/python3.9/site-packages/diffusers/models/attention_processor.py", line 321, in forward
+    return self.processor(
+  File "/share/phoenix/nfs02/S6/localdisk/hj453/.conda/envs/neural-gaffer/lib/python3.9/site-packages/diffusers/models/attention_processor.py", line 1046, in __call__
+    hidden_states = xformers.ops.memory_efficient_attention(
+  File "/share/phoenix/nfs02/S6/localdisk/hj453/.conda/envs/neural-gaffer/lib/python3.9/site-packages/xformers/ops/fmha/__init__.py", line 301, in memory_efficient_attention
+    return _memory_efficient_attention(
+  File "/share/phoenix/nfs02/S6/localdisk/hj453/.conda/envs/neural-gaffer/lib/python3.9/site-packages/xformers/ops/fmha/__init__.py", line 462, in _memory_efficient_attention
+    return _memory_efficient_attention_forward(
+  File "/share/phoenix/nfs02/S6/localdisk/hj453/.conda/envs/neural-gaffer/lib/python3.9/site-packages/xformers/ops/fmha/__init__.py", line 479, in _memory_efficient_attention_forward
+    output_shape = inp.normalize_bmhk()
+  File "/share/phoenix/nfs02/S6/localdisk/hj453/.conda/envs/neural-gaffer/lib/python3.9/site-packages/xformers/ops/fmha/common.py", line 116, in normalize_bmhk
+    self.attn_bias, partial(torch.unsqueeze, dim=1)
+KeyboardInterrupt
+[rank0]: Traceback (most recent call last):
+[rank0]:   File "/share/phoenix/nfs02/S6/localdisk/hj453/code/Neural_Gaffer/neural_gaffer_training.py", line 1268, in <module>
+[rank0]:     args = parse_args()
+[rank0]:   File "/share/phoenix/nfs02/S6/localdisk/hj453/code/Neural_Gaffer/neural_gaffer_training.py", line 1133, in main
+[rank0]:     ema_unet.copy_to(unet.parameters())
+[rank0]:   File "/share/phoenix/nfs02/S6/localdisk/hj453/code/Neural_Gaffer/neural_gaffer_training.py", line 115, in log_validation
+[rank0]:     pipeline_output_images = pipeline(input_imgs=input_image, prompt_imgs=input_image, poses=pose,
+[rank0]:   File "/share/phoenix/nfs02/S6/localdisk/hj453/.conda/envs/neural-gaffer/lib/python3.9/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+[rank0]:     return func(*args, **kwargs)
+[rank0]:   File "/share/phoenix/nfs02/S6/localdisk/hj453/code/Neural_Gaffer/pipeline_neural_gaffer.py", line 848, in __call__
+[rank0]:     noise_pred = self.unet(latent_model_input, t, encoder_hidden_states=prompt_embeds).sample
+[rank0]:   File "/share/phoenix/nfs02/S6/localdisk/hj453/.conda/envs/neural-gaffer/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+[rank0]:     return self._call_impl(*args, **kwargs)
+[rank0]:   File "/share/phoenix/nfs02/S6/localdisk/hj453/.conda/envs/neural-gaffer/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+[rank0]:     return forward_call(*args, **kwargs)
+[rank0]:   File "/share/phoenix/nfs02/S6/localdisk/hj453/.conda/envs/neural-gaffer/lib/python3.9/site-packages/accelerate/utils/operations.py", line 680, in forward
+[rank0]:     return model_forward(*args, **kwargs)
+[rank0]:   File "/share/phoenix/nfs02/S6/localdisk/hj453/.conda/envs/neural-gaffer/lib/python3.9/site-packages/accelerate/utils/operations.py", line 668, in __call__
+[rank0]:     return convert_to_fp32(self.model_forward(*args, **kwargs))
+[rank0]:   File "/share/phoenix/nfs02/S6/localdisk/hj453/.conda/envs/neural-gaffer/lib/python3.9/site-packages/torch/amp/autocast_mode.py", line 43, in decorate_autocast
+[rank0]:     return func(*args, **kwargs)
+[rank0]:   File "/share/phoenix/nfs02/S6/localdisk/hj453/.conda/envs/neural-gaffer/lib/python3.9/site-packages/diffusers/models/unet_2d_condition.py", line 905, in forward
+[rank0]:     sample, res_samples = downsample_block(
+[rank0]:   File "/share/phoenix/nfs02/S6/localdisk/hj453/.conda/envs/neural-gaffer/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+[rank0]:     return self._call_impl(*args, **kwargs)
+[rank0]:   File "/share/phoenix/nfs02/S6/localdisk/hj453/.conda/envs/neural-gaffer/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+[rank0]:     return forward_call(*args, **kwargs)
+[rank0]:   File "/share/phoenix/nfs02/S6/localdisk/hj453/.conda/envs/neural-gaffer/lib/python3.9/site-packages/diffusers/models/unet_2d_blocks.py", line 993, in forward
+[rank0]:     hidden_states = attn(
+[rank0]:   File "/share/phoenix/nfs02/S6/localdisk/hj453/.conda/envs/neural-gaffer/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+[rank0]:     return self._call_impl(*args, **kwargs)
+[rank0]:   File "/share/phoenix/nfs02/S6/localdisk/hj453/.conda/envs/neural-gaffer/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+[rank0]:     return forward_call(*args, **kwargs)
+[rank0]:   File "/share/phoenix/nfs02/S6/localdisk/hj453/.conda/envs/neural-gaffer/lib/python3.9/site-packages/diffusers/models/transformer_2d.py", line 291, in forward
+[rank0]:     hidden_states = block(
+[rank0]:   File "/share/phoenix/nfs02/S6/localdisk/hj453/.conda/envs/neural-gaffer/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+[rank0]:     return self._call_impl(*args, **kwargs)
+[rank0]:   File "/share/phoenix/nfs02/S6/localdisk/hj453/.conda/envs/neural-gaffer/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+[rank0]:     return forward_call(*args, **kwargs)
+[rank0]:   File "/share/phoenix/nfs02/S6/localdisk/hj453/.conda/envs/neural-gaffer/lib/python3.9/site-packages/diffusers/models/attention.py", line 154, in forward
+[rank0]:     attn_output = self.attn1(
+[rank0]:   File "/share/phoenix/nfs02/S6/localdisk/hj453/.conda/envs/neural-gaffer/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+[rank0]:     return self._call_impl(*args, **kwargs)
+[rank0]:   File "/share/phoenix/nfs02/S6/localdisk/hj453/.conda/envs/neural-gaffer/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+[rank0]:     return forward_call(*args, **kwargs)
+[rank0]:   File "/share/phoenix/nfs02/S6/localdisk/hj453/.conda/envs/neural-gaffer/lib/python3.9/site-packages/diffusers/models/attention_processor.py", line 321, in forward
+[rank0]:     return self.processor(
+[rank0]:   File "/share/phoenix/nfs02/S6/localdisk/hj453/.conda/envs/neural-gaffer/lib/python3.9/site-packages/diffusers/models/attention_processor.py", line 1046, in __call__
+[rank0]:     hidden_states = xformers.ops.memory_efficient_attention(
+[rank0]:   File "/share/phoenix/nfs02/S6/localdisk/hj453/.conda/envs/neural-gaffer/lib/python3.9/site-packages/xformers/ops/fmha/__init__.py", line 301, in memory_efficient_attention
+[rank0]:     return _memory_efficient_attention(
+[rank0]:   File "/share/phoenix/nfs02/S6/localdisk/hj453/.conda/envs/neural-gaffer/lib/python3.9/site-packages/xformers/ops/fmha/__init__.py", line 462, in _memory_efficient_attention
+[rank0]:     return _memory_efficient_attention_forward(
+[rank0]:   File "/share/phoenix/nfs02/S6/localdisk/hj453/.conda/envs/neural-gaffer/lib/python3.9/site-packages/xformers/ops/fmha/__init__.py", line 479, in _memory_efficient_attention_forward
+[rank0]:     output_shape = inp.normalize_bmhk()
+[rank0]:   File "/share/phoenix/nfs02/S6/localdisk/hj453/.conda/envs/neural-gaffer/lib/python3.9/site-packages/xformers/ops/fmha/common.py", line 116, in normalize_bmhk
+[rank0]:     self.attn_bias, partial(torch.unsqueeze, dim=1)
+[rank0]: KeyboardInterrupt

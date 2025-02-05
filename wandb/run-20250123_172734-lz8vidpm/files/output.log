@@ -1,0 +1,52 @@
+01/23/2025 17:27:35 - INFO - __main__ - ***** Running training *****
+01/23/2025 17:27:35 - INFO - __main__ -   Num examples = 90092
+01/23/2025 17:27:35 - INFO - __main__ -   Num batches each epoch = 704
+01/23/2025 17:27:35 - INFO - __main__ -   Num Epochs = 114
+01/23/2025 17:27:35 - INFO - __main__ -   Instantaneous batch size per device = 64
+01/23/2025 17:27:35 - INFO - __main__ -   Total train batch size (w. parallel, distributed & accumulation) = 128
+01/23/2025 17:27:35 - INFO - __main__ -   Gradient Accumulation steps = 1
+01/23/2025 17:27:35 - INFO - __main__ -   Total optimization steps = 80000
+01/23/2025 17:27:35 - INFO - __main__ -  do_classifier_free_guidance = True
+01/23/2025 17:27:35 - INFO - __main__ -  conditioning_dropout_prob = 0.05
+Checkpoint 'latest' does not exist. Starting a new training run.
+Steps:   0%|                                                                                                                                                                      | 0/80000 [00:00<?, ?it/s]/share/phoenix/nfs02/S6/localdisk/hj453/.conda/envs/neural-gaffer/lib/python3.9/site-packages/torch/utils/checkpoint.py:1399: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  with device_autocast_ctx, torch.cpu.amp.autocast(**cpu_autocast_kwargs), recompute_context:  # type: ignore[attr-defined]
+Steps:   0%|                                                                                                                                                          | 1/80000 [00:09<220:35:50,  9.93s/it]01/23/2025 17:27:48 - INFO - __main__ - Running unseen_object_with_random_light_condition validation...
+cc_projection/diffusion_pytorch_model.safetensors not found
+The config attributes {'cc_projection': ['pipeline_zero1to3', 'CCProjection']} were passed to Neural_Gaffer_StableDiffusionPipeline, but are not expected and will be ignored. Please verify your model_index.json configuration file.
+Keyword arguments {'cc_projection': ['pipeline_zero1to3', 'CCProjection']} are not expected by Neural_Gaffer_StableDiffusionPipeline and will be ignored.
+30it [02:06,  4.20s/it]
+/share/phoenix/nfs02/S6/localdisk/hj453/.conda/envs/neural-gaffer/lib/python3.9/site-packages/torchmetrics/functional/image/lpips.py:323: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  self.load_state_dict(torch.load(model_path, map_location="cpu"), strict=False)
+01/23/2025 17:30:20 - INFO - __main__ - Running unseen_object_with_unseen_envir validation...
+cc_projection/diffusion_pytorch_model.safetensors not found
+The config attributes {'cc_projection': ['pipeline_zero1to3', 'CCProjection']} were passed to Neural_Gaffer_StableDiffusionPipeline, but are not expected and will be ignored. Please verify your model_index.json configuration file.
+Keyword arguments {'cc_projection': ['pipeline_zero1to3', 'CCProjection']} are not expected by Neural_Gaffer_StableDiffusionPipeline and will be ignored.
+20it [01:26,  4.32s/it]
+Traceback (most recent call last):
+  File "/share/phoenix/nfs02/S6/localdisk/hj453/code/Neural_Gaffer/neural_gaffer_training.py", line 1265, in <module>
+  File "/share/phoenix/nfs02/S6/localdisk/hj453/code/Neural_Gaffer/neural_gaffer_training.py", line 1130, in main
+    if args.use_ema:
+  File "/share/phoenix/nfs02/S6/localdisk/hj453/code/Neural_Gaffer/neural_gaffer_training.py", line 115, in log_validation
+    pipeline_output_images = pipeline(input_imgs=input_image, prompt_imgs=input_image, poses=pose,
+  File "/share/phoenix/nfs02/S6/localdisk/hj453/.conda/envs/neural-gaffer/lib/python3.9/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+  File "/share/phoenix/nfs02/S6/localdisk/hj453/code/Neural_Gaffer/pipeline_neural_gaffer.py", line 857, in __call__
+    latents = self.scheduler.step(noise_pred, t, latents, **extra_step_kwargs, return_dict=False)[0]
+  File "/share/phoenix/nfs02/S6/localdisk/hj453/.conda/envs/neural-gaffer/lib/python3.9/site-packages/diffusers/schedulers/scheduling_ddim.py", line 404, in step
+    alpha_prod_t = self.alphas_cumprod[timestep]
+KeyboardInterrupt
+[rank0]: Traceback (most recent call last):
+[rank0]:   File "/share/phoenix/nfs02/S6/localdisk/hj453/code/Neural_Gaffer/neural_gaffer_training.py", line 1265, in <module>
+[rank0]:
+[rank0]:   File "/share/phoenix/nfs02/S6/localdisk/hj453/code/Neural_Gaffer/neural_gaffer_training.py", line 1130, in main
+[rank0]:     if args.use_ema:
+[rank0]:   File "/share/phoenix/nfs02/S6/localdisk/hj453/code/Neural_Gaffer/neural_gaffer_training.py", line 115, in log_validation
+[rank0]:     pipeline_output_images = pipeline(input_imgs=input_image, prompt_imgs=input_image, poses=pose,
+[rank0]:   File "/share/phoenix/nfs02/S6/localdisk/hj453/.conda/envs/neural-gaffer/lib/python3.9/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+[rank0]:     return func(*args, **kwargs)
+[rank0]:   File "/share/phoenix/nfs02/S6/localdisk/hj453/code/Neural_Gaffer/pipeline_neural_gaffer.py", line 857, in __call__
+[rank0]:     latents = self.scheduler.step(noise_pred, t, latents, **extra_step_kwargs, return_dict=False)[0]
+[rank0]:   File "/share/phoenix/nfs02/S6/localdisk/hj453/.conda/envs/neural-gaffer/lib/python3.9/site-packages/diffusers/schedulers/scheduling_ddim.py", line 404, in step
+[rank0]:     alpha_prod_t = self.alphas_cumprod[timestep]
+[rank0]: KeyboardInterrupt
