@@ -9,7 +9,7 @@ https://github.com/Haian-Jin/Neural_Gaffer/assets/79512936/bc35ad6f-134e-4b83-8b
 ## 0. TODO List
 I'll be updating the following list. If you have any urgent requirements, such as needing to compare this method for an upcoming submission, please contact me via my email.
 - [x] Release the checkpoint and the inference script for in-the-wild single image input
-- [ ] Release the training dataset for the diffusion model
+- [x] Release the training dataset for the diffusion model
 - [x] Release the training code for the diffusion model
 - [x] Release the 3D relighting code
 
