@@ -44,6 +44,9 @@ Here we provide a **subset** of our training dataset and full set of the validat
 * [Validation Dataset - Lighting](https://huggingface.co/datasets/coast01/NeuralGafferDataset/resolve/main/training_data_SUBSET_lighting.zip?download=true)
 
 The training dataset subset here only has 1000 objects, which is a subset of the full training dataset used to train our model (~ 90,000 objects). We provide the subset here to help you test if the code can be run correctly. The full training dataset object list and our validatoin dataset list in the `./filtered_object_list` folder.
+
+The original training dataset is too large to be uploaded to Hugging Face. I have provided the rendering code and preprocessing code [here](https://github.com/Haian-Jin/Neural_Gaffer/tree/main/scripts/Objavarse_rendering).
+
 ## 2. Training
 Before running, please change the dataset directories (training and validation) in `configs/neural_gaffer_training.txt`. The following command trains the diffusion model for 2D relighting with 8 GPUs.
 
