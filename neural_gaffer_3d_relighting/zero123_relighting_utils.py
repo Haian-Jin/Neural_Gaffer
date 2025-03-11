@@ -117,7 +117,7 @@ class RelightingDiffusion(nn.Module):
             ldr_map = F.interpolate(ldr_map, (256, 256), mode='bilinear', align_corners=False)
             # import ipdb; ipdb.set_trace()
             # input_image_pil = TF.to_pil_image(input_image.squeeze(0))
-            x_clip = self.CLIP_preprocess(input_image)
+            x_clip = self.CLIP_preprocess(input_image*2.0-1)
             c = self.pipe.image_encoder(x_clip.to(self.dtype)).image_embeds
             input_image_vae = self.encode_imgs(input_image.to(self.dtype)) / self.vae.config.scaling_factor
             hdr_latent = self.encode_imgs(hdr_map.to(self.dtype)) / self.vae.config.scaling_factor
@@ -268,7 +268,7 @@ class RelightingDiffusion(nn.Module):
         return imgs
 
     def encode_imgs(self, imgs, mode=False):
-        # imgs: [B, 3, H, W]
+        # imgs: [B, 3, H, W] in [0, 1]
 
         imgs = 2 * imgs - 1
 
@@ -355,16 +355,5 @@ if __name__ == '__main__':
     outputs = (outputs * 255).astype(np.uint8)
     outputs = cv2.cvtColor(outputs, cv2.COLOR_RGB2BGR)
     cv2.imwrite('outputs.png', outputs)
-    # plt.imshow(outputs.float().cpu().numpy().transpose(0, 2, 3, 1)[0])
-    # plt.show()
-    # print(f'[INFO] running model ...')
-    # # zero123.get_img_embeds(image)
 
-    # azimuth = opt.azimuth
-    # image_idx = 0
-    # hdr_map, ldr_map = None, None
-    # while True:
-    #     outputs = zero123.refine(image, image_idx, hdr_map, ldr_map, strength=0)
-    #     plt.imshow(outputs.float().cpu().numpy().transpose(0, 2, 3, 1)[0])
-    #     plt.show()
-    #     azimuth = (azimuth + 10) % 360
+

@@ -87,10 +87,7 @@ def render_test(args):
     ndc_ray = args.ndc_ray
 
     if not os.path.exists(args.ckpt):
-        print('the ckpt path does not exists!!')
-        print(args.ckpt)
-        print('!!!!!')
-        return
+        AssertionError('ckpt path does not exists!!')
 
     ckpt = torch.load(args.ckpt, map_location=device)
     kwargs = ckpt['kwargs']
@@ -126,10 +123,7 @@ def relighting_test(args):
     ndc_ray = args.ndc_ray
 
     if not os.path.exists(args.ckpt):
-        print('the ckpt path does not exists!!')
-        print(args.ckpt)
-        print('!!!!!')
-        return
+        AssertionError('ckpt path does not exists!!')
 
     ckpt = torch.load(args.ckpt, map_location=device)
     kwargs = ckpt['kwargs']
@@ -159,8 +153,6 @@ def reconstruction(args):
     ndc_ray = args.ndc_ray
 
     # init resolution
-    upsamp_list = args.upsamp_list
-    update_AlphaMask_list = args.update_AlphaMask_list
     n_lamb_sigma = args.n_lamb_sigma
     n_lamb_sh = args.n_lamb_sh
 
@@ -208,7 +200,7 @@ def reconstruction(args):
 
     print("lr decay", args.lr_decay_target_ratio, args.lr_decay_iters)
     
-    optimizer = torch.optim.Adam(grad_vars, betas=(0.9,0.99))
+    optimizer = torch.optim.Adam(grad_vars, betas=(0.9, 0.99))
 
 
     torch.cuda.empty_cache()
@@ -313,6 +305,8 @@ def reconstruction(args):
         
         # exponential
         strength = 0.6 + (np.exp(iteration) - 1) / (np.exp(refinement_iteration) - 1) * 0.35
+        # sigmoid
+        strength = 0.6 + (1 / (1 + np.exp(-12 * ((iteration / 500) - 0.5)))) * 0.35
         refined_images = guidance_diffusion.refine(rgb_pred, cam_idx_list, strength=strength).float()
         if iteration % 50 == 0:
             # save refined images
