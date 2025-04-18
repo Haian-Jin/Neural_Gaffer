@@ -91,7 +91,7 @@ accelerate launch --main_process_port 25539 --config_file configs/1_16fp.yaml ne
 
 #### 3.1.4 Compositing the background (optional)
 ```bash
-python scripts/composting_background.py --mask_dir ./preprocessed_data/mask --lighting_dir ./preprocessed_lighting_data --relighting_dir ./real_data_relighting/real_img --save_dir ./real_data_relighting/video
+python scripts/composting_background.py --mask_dir ./preprocessed_data/mask --lighting_dir ./preprocessed_lighting_data --relighting_dir ./real_data_relighting --save_dir ./real_data_relighting/video
 ```
 
 <!-- ### 3.2 Relighting the Ojaverse-like instances
