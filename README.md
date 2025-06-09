@@ -41,7 +41,7 @@ Here we provide a **subset** of our training dataset and full set of the validat
 * [Training Dataset Subset - Images](https://huggingface.co/datasets/coast01/NeuralGafferDataset/resolve/main/training_data_SUBSET_img.zip?download=true)
 * [Training Dataset Subset - Lighting](https://huggingface.co/datasets/coast01/NeuralGafferDataset/resolve/main/training_data_SUBSET_lighting.zip?download=true)
 * [Validation Dataset - Images](https://huggingface.co/datasets/coast01/NeuralGafferDataset/resolve/main/val_rendered_images_resized.zip?download=true)
-* [Validation Dataset - Lighting](https://huggingface.co/datasets/coast01/NeuralGafferDataset/resolve/main/training_data_SUBSET_lighting.zip?download=true)
+* [Validation Dataset - Lighting](https://huggingface.co/datasets/coast01/NeuralGafferDataset/resolve/main/val_preprocessed_environment_resized.zip?download=true)
 
 The training dataset subset here only has 1000 objects, which is a subset of the full training dataset used to train our model (~ 90,000 objects). We provide the subset here to help you test if the code can be run correctly. The full training dataset object list and our validatoin dataset list in the `./filtered_object_list` folder.
 
